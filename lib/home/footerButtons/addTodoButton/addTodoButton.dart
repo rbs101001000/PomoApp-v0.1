@@ -15,7 +15,7 @@ class _AddTodoButtonState extends State<AddTodoButton> {
     return Expanded(
       child: GestureDetector(
         onTap: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> const Todo()));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> TodoList()));
         },
         child: const ReusableCard(
           borderRadius: 10,

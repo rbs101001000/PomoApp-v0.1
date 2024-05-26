@@ -17,22 +17,26 @@ class _StartButtonState extends State<StartButton> {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: navigateToTimerPage,
-      // style: ButtonStyle(
-      //   backgroundColor: MaterialStateColor.resolveWith((states) => Colors.orange),
-      // ),
-      style: TextButton.styleFrom(
-        backgroundColor: Colors.orange,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.zero,
-          side: BorderSide(color: Colors.white, width: 3),
-
-        )
-      ),
-      child: const Text(
-        "START",
-        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,fontSize: 40),
+    return Container(
+      padding: const EdgeInsetsDirectional.all(10),
+      child: TextButton(
+        onPressed: navigateToTimerPage,
+        // style: ButtonStyle(
+        //   backgroundColor: MaterialStateColor.resolveWith((states) => Colors.orange),
+        // ),
+        style: TextButton.styleFrom(
+          maximumSize: const Size(double.maxFinite, double.maxFinite),
+          backgroundColor: Colors.orange,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(0)),
+            // side: BorderSide(color: Colors.white, width: 3),
+      
+          )
+        ),
+        child: const Text(
+          "START",
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,fontSize: 35),
+        ),
       ),
     );
   }
