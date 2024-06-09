@@ -139,7 +139,8 @@ class _TodoListState extends State<TodoList> {
           ),
           ElevatedButton(
             onPressed: _showAddTaskDialog,
-            child: const Text('Add Task',style: TextStyle(color: Colors.white),),
+            child: const Text('Add Task',style: TextStyle(color: Colors.white),
+            ),
           ),
         ],
       ),
