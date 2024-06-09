@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pomoapp/reusableCard.dart';
+import 'package:pomoapp/todo/add_todo.dart';
 
 class TodoSection extends StatefulWidget {
   const TodoSection({super.key});
@@ -21,8 +22,8 @@ class _TodoSectionState extends State<TodoSection> {
               borderRadius: 20,
               colour: Colors.black12,
               childCard: ListView(
-                children: const [
-
+                children: [
+                  TodoList()
                 ],
               ),
             ),
