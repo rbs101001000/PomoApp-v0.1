@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pomoapp/profile/profile.dart';
+import 'package:pomoapp/profile/profilePage.dart';
 import 'package:pomoapp/reusableCard.dart';
 
 
