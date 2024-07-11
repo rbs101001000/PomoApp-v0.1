@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pomoapp/register/loginScreen.dart';
+import 'package:http/http.dart'  as http;
+
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -9,16 +11,17 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-
   final userName = TextEditingController();
   final emailAddress = TextEditingController();
   final password = TextEditingController();
   final confirmPassword = TextEditingController();
   bool isSecure = true;
+
   //
   // final formKey = GlobalKey();
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -47,14 +50,14 @@ class _SignUpPageState extends State<SignUpPage> {
                         Hero(
                           tag: 'appname',
                           child: TweenAnimationBuilder<double>(
-                            duration: const Duration(seconds: 7), // Set the desired duration for the animation
+                            duration: const Duration(seconds: 5), // Set the desired duration for the animation
                             tween: Tween<double>(begin: 0, end: 1),
                             builder: (BuildContext context, double value, Widget? child) {
                               return Opacity(
                                 opacity: value,
                                 child: const Text(
                                   "Pomo",
-                                  style: TextStyle(fontSize: 60),
+                                  style: TextStyle(fontSize: 60,),
                                 ),
                               );
                             },

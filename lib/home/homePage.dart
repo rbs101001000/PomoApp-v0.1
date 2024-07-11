@@ -15,8 +15,8 @@ class _HomePageState extends State<HomePage> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: const ColorScheme.dark().copyWith(background: Colors.teal),
-        appBarTheme: const AppBarTheme(color: Color.fromRGBO(1, 75, 68, 100),)
+        colorScheme: const ColorScheme.dark().copyWith(background: Colors.black),
+        appBarTheme: const AppBarTheme(color: Colors.white30)
       ),
       home: Scaffold(
         // appBar: AppBar(

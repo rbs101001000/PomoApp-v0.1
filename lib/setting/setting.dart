@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import '../register/loginScreen.dart';
+import 'settingFunctions.dart';
 
 class Setting extends StatefulWidget {
   const Setting({super.key});
@@ -9,14 +10,17 @@ class Setting extends StatefulWidget {
   State<Setting> createState() => _SettingState();
 }
 
+
 class _SettingState extends State<Setting> {
+  SettingFunctions settingFunctions = SettingFunctions();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Row(
           children: [
-            Text("Setting"),
+            Text("Setting",style: TextStyle(fontSize: 30),),
           ],
         ),
       ),
@@ -24,6 +28,8 @@ class _SettingState extends State<Setting> {
         child: Padding(
           padding: const EdgeInsetsDirectional.all(20),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               const Row(
                 children: [
@@ -36,48 +42,64 @@ class _SettingState extends State<Setting> {
               ),
               const SizedBox(
                 height: 10,
-                width: 300,
+                width: double.maxFinite,
                 child: Divider(
                   color: Colors.white70,
                   thickness: 3,
                 ),
+              ),
+              const SizedBox(
+                height: 10,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text("Change password", style: TextStyle(fontSize: 20),),
                   GestureDetector(
-                      onTap: (){},
-                      child: const Icon(Icons.arrow_forward_ios))
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text("Social", style: TextStyle(fontSize: 20),),
-                  GestureDetector(
-                      onTap: (){},
-                      child: const Icon(Icons.arrow_forward_ios,))
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text("Language", style: TextStyle(fontSize: 20),),
-                  GestureDetector(
                       onTap: (){
-
+                        settingFunctions.changePasswordDialog(context);
                       },
                       child: const Icon(Icons.arrow_forward_ios))
                 ],
               ),
+              const SizedBox(
+                height: 10,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text("Content setting", style: TextStyle(fontSize: 16),),
+                  const Text("Change Name", style: TextStyle(fontSize: 20),),
                   GestureDetector(
                       onTap: (){
-
+                        settingFunctions.changeNameDialog(context);
+                      },
+                      child: const Icon(Icons.arrow_forward_ios,))
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text("Change Email", style: TextStyle(fontSize: 20),),
+                  GestureDetector(
+                      onTap: (){
+                        settingFunctions.changeEmailDialog(context);
+                      },
+                      child: const Icon(Icons.arrow_forward_ios))
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text("Change Bio", style: TextStyle(fontSize: 20),),
+                  GestureDetector(
+                      onTap: (){
+                        settingFunctions.changeBio(context);
                       },
                       child: const Icon(Icons.arrow_forward_ios))
                 ],
@@ -94,47 +116,77 @@ class _SettingState extends State<Setting> {
               ),
               const SizedBox(
                 height: 10,
-                width: 300,
+                width: double.maxFinite,
                 child: Divider(
                   color: Colors.white70,
                   thickness: 3,
                 ),
               ),
-              const Row(
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Todo tasks", style: TextStyle(fontSize: 20),),
-                  Icon(Icons.forward)
+                  const Text("Todo tasks", style: TextStyle(fontSize: 20),),
+                  Transform.scale(
+                    scale: 0.7,
+                    child: CupertinoSwitch(
+                        activeColor: Colors.white70,
+                        value: true, onChanged: (bool val){
+                    }),
+                  ),
                 ],
               ),
-              const Row(
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Workings sessions alert", style: TextStyle(fontSize: 20),),
-                  Icon(Icons.forward)
+                  const Text("Workings sessions alert", style: TextStyle(fontSize: 20),),
+                  Transform.scale(
+                    scale: 0.7,
+                    child: CupertinoSwitch(
+                        activeColor: Colors.white70,
+                        value: true, onChanged: (bool val){
+                    }),
+                  ),
                 ],
               ),
-              const Row(
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Work/Study time alert", style: TextStyle(fontSize: 20),),
-                  Icon(Icons.forward)
+                  const Text("Work/Study time alert", style: TextStyle(fontSize: 20),),
+                  Transform.scale(
+                    scale: 0.7,
+                    child: CupertinoSwitch(
+                        activeColor: Colors.white70,
+                        value: true, onChanged: (bool val){
+                    }),
+                  ),
                 ],
               ),
               const SizedBox(height: 20,),
               const Row(
                 children: [
-                  Icon(Icons.forward),
+                  Icon(Icons.remove_red_eye_sharp),
                   SizedBox(width: 10,),
                   Text("Appearance", style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
                 ],
               ),
               const SizedBox(
-                  width: 300,
+                  width: double.maxFinite,
                   child: Divider(
                     color: Colors.white70,
                     thickness: 3,
                   ),),
+              const SizedBox(
+                height: 10,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -144,16 +196,43 @@ class _SettingState extends State<Setting> {
                     child: CupertinoSwitch(
                         activeColor: Colors.white70,
                         value: true, onChanged: (bool val){
-
                     }),
-                  )
+                  ),
                 ],
               ),
-              const Row(
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("something", style: TextStyle(fontSize: 20),),
-                  Icon(Icons.forward)
+                  const Text("Timer theme", style: TextStyle(fontSize: 20),),
+                  Transform.scale(
+                    scale: 0.7,
+                    child: CupertinoSwitch(
+                        activeColor: Colors.white70,
+                        value: true, onChanged: (bool val){
+                    }),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 100,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    style: ButtonStyle(backgroundColor: MaterialStateColor.resolveWith((states) => Colors.white30)),
+                    onPressed: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage(),));
+                    },
+                    child: const Row(
+                    children: [
+                      Text("Log out  ", style: TextStyle(color: Colors.white),),
+                      Icon(Icons.logout,color: Colors.white,),
+                    ],
+                  ),),
                 ],
               ),
             ],

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pomoapp/timer_page/timer_page.dart';
+import 'package:pomoapp/timer_page/timerOrientation.dart';
 
 class StartButton extends StatefulWidget {
   const StartButton({super.key});
@@ -11,7 +11,7 @@ class StartButton extends StatefulWidget {
 class _StartButtonState extends State<StartButton> {
 
   void navigateToTimerPage(){
-    final route = MaterialPageRoute(builder: (context)=>const TimerPage());
+    final route = MaterialPageRoute(builder: (context)=>const TimerOrientation());
     Navigator.push(context, route);
   }
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pomoapp/reusableCard.dart';
-import '../../../todo/add_todo.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AddTodoButton extends StatefulWidget {
@@ -22,7 +21,7 @@ class _AddTodoButtonState extends State<AddTodoButton> {
         child: const ReusableCard(
           borderRadius: 10,
           colour: Colors.black26,
-          childCard: Icon(Icons.question_mark),
+          childCard: Icon(Icons.web),
         ),
       ),
     );

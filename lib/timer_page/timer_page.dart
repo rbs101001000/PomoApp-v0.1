@@ -1,33 +1,18 @@
 import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/services.dart';
 
 
-
-class TimerPage extends StatelessWidget {
-  const TimerPage({super.key});
-
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: PomodoroScreen(),
-    );
-  }
-
-  // @override
-  // State<StatefulWidget> createState() {
-  //   // TODO: implement createState
-  //   throw UnimplementedError();
-  // }
-}
-
-class PomodoroScreen extends StatefulWidget {
-  const PomodoroScreen({super.key});
+class TimerBox extends StatefulWidget {
+  const TimerBox({super.key});
 
   @override
-  _PomodoroScreenState createState() => _PomodoroScreenState();
+  _TimerBoxState createState() => _TimerBoxState();
 }
 
-class _PomodoroScreenState extends State<PomodoroScreen> {
+class _TimerBoxState extends State<TimerBox> {
   int workTime = 25; // work time in minutes
   int breakTime = 5; // break time in minutes
   int remainingTime = 0;
@@ -39,6 +24,17 @@ class _PomodoroScreenState extends State<PomodoroScreen> {
   void initState() {
     super.initState();
     loadProgress();
+  }
+
+  Future<void> openFocusModeSettings() async {
+    const platform = MethodChannel(
+        'com.example.focus_mode_channel'); // Replace with your desired channel name
+
+    try {
+      await platform.invokeMethod('openFocusModeSettings');
+    } on PlatformException catch (e) {
+      print('Failed to open focus mode settings: ${e.message}');
+    }
   }
 
   @override
@@ -101,49 +97,102 @@ class _PomodoroScreenState extends State<PomodoroScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Pomodoro Timer'),
+    return Container(
+      height: 350,
+      width: 350,
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.white,width: 3),
+        borderRadius: BorderRadius.circular(30),
+        color: Colors.black26,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 5,
+            blurRadius: 7,
+            offset: Offset(0, 3), // changes the position of the shadow
+          ),
+        ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              timerType == TimerType.work ? 'Work Time' : 'Break Time',
-              style: const TextStyle(fontSize: 24),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              '${remainingTime ~/ 60}:${(remainingTime % 60).toString().padLeft(2, '0')}',
-              style: const TextStyle(fontSize: 48),
-            ),
-            const SizedBox(height: 16),
-            Row(
+      padding: const EdgeInsetsDirectional.all(20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const SizedBox(
+            height: 10,
+          ),
+          Text(
+            timerType == TimerType.work ? 'Work Time' : 'Break Time',
+            style: const TextStyle(fontSize: 44,fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 16),
+          Text(
+            '${remainingTime ~/ 60}:${(remainingTime % 60).toString().padLeft(2, '0')}',
+            style: const TextStyle(fontSize: 48),
+          ),
+          const SizedBox(height: 16),
+          Container(
+            padding: const EdgeInsetsDirectional.all(20),
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.black12,),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateColor.resolveWith(
+                          (states) => Colors.white)),
                   onPressed: isRunning ? null : startTimer,
-                  child: const Text('Start'),
+                  child: const Icon(
+                    Icons.play_arrow,
+                    color: Colors.black87,
+                  ),
                 ),
                 const SizedBox(width: 16),
                 ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateColor.resolveWith(
+                          (states) => Colors.white)),
                   onPressed: isRunning ? stopTimer : null,
-                  child: const Text('Stop'),
+                  child: const Icon(
+                    Icons.stop,
+                    color: Colors.black87,
+                  ),
                 ),
                 const SizedBox(width: 16),
                 ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateColor.resolveWith(
+                          (states) => Colors.white)),
                   onPressed: resetTimer,
-                  child: const Text('Reset'),
+                  child: const Icon(
+                    Icons.restart_alt_sharp,
+                    color: Colors.black87,
+                  ),
                 ),
               ],
             ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: saveProgress,
-        child: const Icon(Icons.save),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("Turn on focus mode: ",style: TextStyle(fontSize: 20),),
+              Transform.scale(
+                scale: 0.7,
+                child: CupertinoSwitch(
+                    activeColor: Colors.white70,
+                    value: true,
+                    onChanged: (bool val) {}),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 10,
+          )
+        ],
       ),
     );
   }

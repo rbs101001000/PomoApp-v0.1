@@ -128,7 +128,7 @@ class _TodoSectionState extends State<TodoSection> {
             Expanded(
               child: ReusableCard(
                 borderRadius: 20,
-                colour: Colors.black12,
+                colour: Colors.white24,
                 childCard: Expanded(
                   child: ListView.builder(
                     itemCount: _tasks.length,

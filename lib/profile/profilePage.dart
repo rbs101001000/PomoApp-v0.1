@@ -1,7 +1,9 @@
 import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:pomoapp/user_data/userData.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -11,6 +13,9 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+
+  UserData userData = UserData();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,12 +40,20 @@ class _ProfileState extends State<Profile> {
                   backgroundImage: AssetImage('lib/images/picture.JPG'),
                   radius: 60.0,
                 ),
-                const Text(
-                  'Saber Oyghan',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 40.0,
-                    color: Colors.white,
+                GestureDetector(
+                  onTap: () async{
+                    setState(() {
+                      userData.todayR=12;
+                    });
+                    SharedPreferences shared = await SharedPreferences.getInstance();
+                  },
+                  child: Text(
+                    "${userData.todayR}",
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 40.0,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
                 const Text(
@@ -62,7 +75,7 @@ class _ProfileState extends State<Profile> {
                   height: 400,
                   width: 300,
                   child: Card(
-                    color: Colors.black12,
+                    color: Colors.white12,
                     child: Container(
                       margin: const EdgeInsetsDirectional.all(20),
                       child: const Row(

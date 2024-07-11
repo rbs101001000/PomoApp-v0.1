@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pomoapp/home/homePage.dart';
 import 'package:pomoapp/register/signUpScreen.dart';
+import 'package:pomoapp/main.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -16,6 +17,8 @@ class _LoginPageState extends State<LoginPage> {
   final emailAddress = TextEditingController();
   final password = TextEditingController();
   bool isSecure = true;
+
+  PomoAppState pomo = PomoAppState();
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +86,11 @@ class _LoginPageState extends State<LoginPage> {
                         tag: "buttonLogin",
                         child: TextButton(
                           style: ButtonStyle(backgroundColor: MaterialStateColor.resolveWith((states) => Colors.teal)),
-                            onPressed: (){
+                            onPressed: ()async{
+                              setState(() {
+                                pomo.isRegistered = true;
+                                print(pomo.isRegistered);
+                              });
                               Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage(),));
                             },
                             child: const Text('Submit',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white),)),
